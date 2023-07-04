@@ -1,0 +1,203 @@
+(venv) (main) [pmmcb@ubuntu22.04:~/Code/Speech-to-Text/whisper-diarization]$ python diarize.py --audio "./audio_files/sample.wav" --whisper-model "medium.en" --device "cuda"
+[NeMo W 2023-07-03 03:57:20 optimizers:54] Apex was not found. Using the lamb or fused_adam optimizer will error out.
+[NeMo W 2023-07-03 03:57:21 experimental:27] Module <class 'nemo.collections.asr.modules.audio_modules.SpectrogramToMultichannelFeatures'> is experimental, not ready for production and is not fully supported. Use at your own risk.
+Selected model is a bag of 1 models. You will see that many progress bars per track.
+Separated tracks will be stored in /home/pmmcb/Code/Speech-to-Text/whisper-diarization/temp_outputs/htdemucs
+Separating track audio_files/sample.wav
+100%|██████████████████████████████████████████████| 35.099999999999994/35.099999999999994 [00:02<00:00, 16.64seconds/s]
+Downloading: "https://download.pytorch.org/torchaudio/models/wav2vec2_fairseq_base_ls960_asr_ls960.pth" to /home/pmmcb/.cache/torch/hub/checkpoints/wav2vec2_fairseq_base_ls960_asr_ls960.pth
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 360M/360M [00:04<00:00, 76.7MB/s]
+100% [................................................................................] 7336 / 7336[NeMo I 2023-07-03 03:58:12 msdd_models:1092] Loading pretrained diar_msdd_telephonic model from NGC
+[NeMo I 2023-07-03 03:58:12 cloud:68] Downloading from: https://api.ngc.nvidia.com/v2/models/nvidia/nemo/diar_msdd_telephonic/versions/1.0.1/files/diar_msdd_telephonic.nemo to /home/pmmcb/.cache/torch/NeMo/NeMo_1.17.0/diar_msdd_telephonic/3c3697a0a46f945574fa407149975a13/diar_msdd_telephonic.nemo
+100% [......................................................................] 107609008 / 107609008[NeMo I 2023-07-03 03:58:16 common:913] Instantiating model from pre-trained checkpoint
+[NeMo W 2023-07-03 03:58:17 modelPT:161] If you intend to do training or fine-tuning, please call the ModelPT.setup_training_data() method and provide a valid configuration file to setup the train data loader.
+    Train config :
+    manifest_filepath: null
+    emb_dir: null
+    sample_rate: 16000
+    num_spks: 2
+    soft_label_thres: 0.5
+    labels: null
+    batch_size: 15
+    emb_batch_size: 0
+    shuffle: true
+
+[NeMo W 2023-07-03 03:58:17 modelPT:168] If you intend to do validation, please call the ModelPT.setup_validation_data() or ModelPT.setup_multiple_validation_data() method and provide a valid configuration file to setup the validation data loader(s).
+    Validation config :
+    manifest_filepath: null
+    emb_dir: null
+    sample_rate: 16000
+    num_spks: 2
+    soft_label_thres: 0.5
+    labels: null
+    batch_size: 15
+    emb_batch_size: 0
+    shuffle: false
+
+[NeMo W 2023-07-03 03:58:17 modelPT:174] Please call the ModelPT.setup_test_data() or ModelPT.setup_multiple_test_data() method and provide a valid configuration file to setup the test data loader(s).
+    Test config :
+    manifest_filepath: null
+    emb_dir: null
+    sample_rate: 16000
+    num_spks: 2
+    soft_label_thres: 0.5
+    labels: null
+    batch_size: 15
+    emb_batch_size: 0
+    shuffle: false
+    seq_eval_mode: false
+
+[NeMo I 2023-07-03 03:58:17 features:287] PADDING: 16
+[NeMo I 2023-07-03 03:58:17 features:287] PADDING: 16
+[NeMo I 2023-07-03 03:58:18 save_restore_connector:247] Model EncDecDiarLabelModel was successfully restored from /home/pmmcb/.cache/torch/NeMo/NeMo_1.17.0/diar_msdd_telephonic/3c3697a0a46f945574fa407149975a13/diar_msdd_telephonic.nemo.
+[NeMo I 2023-07-03 03:58:18 features:287] PADDING: 16
+[NeMo I 2023-07-03 03:58:18 clustering_diarizer:127] Loading pretrained vad_multilingual_marblenet model from NGC
+[NeMo I 2023-07-03 03:58:18 cloud:68] Downloading from: https://api.ngc.nvidia.com/v2/models/nvidia/nemo/vad_multilingual_marblenet/versions/1.10.0/files/vad_multilingual_marblenet.nemo to /home/pmmcb/.cache/torch/NeMo/NeMo_1.17.0/vad_multilingual_marblenet/670f425c7f186060b7a7268ba6dfacb2/vad_multilingual_marblenet.nemo
+100% [............................................................................] 501760 / 501760[NeMo I 2023-07-03 03:58:19 common:913] Instantiating model from pre-trained checkpoint
+[NeMo W 2023-07-03 03:58:19 modelPT:161] If you intend to do training or fine-tuning, please call the ModelPT.setup_training_data() method and provide a valid configuration file to setup the train data loader.
+    Train config :
+    manifest_filepath: /manifests/ami_train_0.63.json,/manifests/freesound_background_train.json,/manifests/freesound_laughter_train.json,/manifests/fisher_2004_background.json,/manifests/fisher_2004_speech_sampled.json,/manifests/google_train_manifest.json,/manifests/icsi_all_0.63.json,/manifests/musan_freesound_train.json,/manifests/musan_music_train.json,/manifests/musan_soundbible_train.json,/manifests/mandarin_train_sample.json,/manifests/german_train_sample.json,/manifests/spanish_train_sample.json,/manifests/french_train_sample.json,/manifests/russian_train_sample.json
+    sample_rate: 16000
+    labels:
+    - background
+    - speech
+    batch_size: 256
+    shuffle: true
+    is_tarred: false
+    tarred_audio_filepaths: null
+    tarred_shard_strategy: scatter
+    augmentor:
+      shift:
+        prob: 0.5
+        min_shift_ms: -10.0
+        max_shift_ms: 10.0
+      white_noise:
+        prob: 0.5
+        min_level: -90
+        max_level: -46
+        norm: true
+      noise:
+        prob: 0.5
+        manifest_path: /manifests/noise_0_1_musan_fs.json
+        min_snr_db: 0
+        max_snr_db: 30
+        max_gain_db: 300.0
+        norm: true
+      gain:
+        prob: 0.5
+        min_gain_dbfs: -10.0
+        max_gain_dbfs: 10.0
+        norm: true
+    num_workers: 16
+    pin_memory: true
+
+[NeMo W 2023-07-03 03:58:19 modelPT:168] If you intend to do validation, please call the ModelPT.setup_validation_data() or ModelPT.setup_multiple_validation_data() method and provide a valid configuration file to setup the validation data loader(s).
+    Validation config :
+    manifest_filepath: /manifests/ami_dev_0.63.json,/manifests/freesound_background_dev.json,/manifests/freesound_laughter_dev.json,/manifests/ch120_moved_0.63.json,/manifests/fisher_2005_500_speech_sampled.json,/manifests/google_dev_manifest.json,/manifests/musan_music_dev.json,/manifests/mandarin_dev.json,/manifests/german_dev.json,/manifests/spanish_dev.json,/manifests/french_dev.json,/manifests/russian_dev.json
+    sample_rate: 16000
+    labels:
+    - background
+    - speech
+    batch_size: 256
+    shuffle: false
+    val_loss_idx: 0
+    num_workers: 16
+    pin_memory: true
+
+[NeMo W 2023-07-03 03:58:19 modelPT:174] Please call the ModelPT.setup_test_data() or ModelPT.setup_multiple_test_data() method and provide a valid configuration file to setup the test data loader(s).
+    Test config :
+    manifest_filepath: null
+    sample_rate: 16000
+    labels:
+    - background
+    - speech
+    batch_size: 128
+    shuffle: false
+    test_loss_idx: 0
+
+[NeMo I 2023-07-03 03:58:19 features:287] PADDING: 16
+[NeMo I 2023-07-03 03:58:19 save_restore_connector:247] Model EncDecClassificationModel was successfully restored from /home/pmmcb/.cache/torch/NeMo/NeMo_1.17.0/vad_multilingual_marblenet/670f425c7f186060b7a7268ba6dfacb2/vad_multilingual_marblenet.nemo.
+[NeMo I 2023-07-03 03:58:19 msdd_models:864] Multiscale Weights: [1, 1, 1, 1, 1]
+[NeMo I 2023-07-03 03:58:19 msdd_models:865] Clustering Parameters: {
+        "oracle_num_speakers": false,
+        "max_num_speakers": 8,
+        "enhanced_count_thres": 80,
+        "max_rp_threshold": 0.25,
+        "sparse_search_volume": 30,
+        "maj_vote_spk_count": false
+    }
+[NeMo I 2023-07-03 03:58:19 speaker_utils:93] Number of files to diarize: 1
+[NeMo I 2023-07-03 03:58:19 clustering_diarizer:309] Split long audio file to avoid CUDA memory issue
+splitting manifest: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 51.33it/s]
+[NeMo I 2023-07-03 03:58:19 classification_models:263] Perform streaming frame-level VAD
+[NeMo I 2023-07-03 03:58:19 collections:298] Filtered duration for loading collection is 0.000000.
+[NeMo I 2023-07-03 03:58:19 collections:301] Dataset loaded with 1 items, total duration of  0.01 hours.
+[NeMo I 2023-07-03 03:58:19 collections:303] # 1 files loaded accounting to # 1 labels
+vad: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00,  1.83it/s]
+[NeMo I 2023-07-03 03:58:20 clustering_diarizer:250] Generating predictions with overlapping input segments
+[NeMo I 2023-07-03 03:58:20 clustering_diarizer:262] Converting frame level prediction to speech/no-speech segment in start and end times format.
+creating speech segments: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 15.66it/s]
+[NeMo I 2023-07-03 03:58:20 clustering_diarizer:287] Subsegmentation for embedding extraction: scale0, /home/pmmcb/Code/Speech-to-Text/whisper-diarization/temp_outputs/speaker_outputs/subsegments_scale0.json
+[NeMo I 2023-07-03 03:58:20 clustering_diarizer:343] Extracting embeddings for Diarization
+[NeMo I 2023-07-03 03:58:20 collections:298] Filtered duration for loading collection is 0.000000.
+[NeMo I 2023-07-03 03:58:20 collections:301] Dataset loaded with 29 items, total duration of  0.01 hours.
+[NeMo I 2023-07-03 03:58:20 collections:303] # 29 files loaded accounting to # 1 labels
+[1/5] extract embeddings: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00,  2.94it/s]
+[NeMo I 2023-07-03 03:58:21 clustering_diarizer:389] Saved embedding files to /home/pmmcb/Code/Speech-to-Text/whisper-diarization/temp_outputs/speaker_outputs/embeddings
+[NeMo I 2023-07-03 03:58:21 clustering_diarizer:287] Subsegmentation for embedding extraction: scale1, /home/pmmcb/Code/Speech-to-Text/whisper-diarization/temp_outputs/speaker_outputs/subsegments_scale1.json
+[NeMo I 2023-07-03 03:58:21 clustering_diarizer:343] Extracting embeddings for Diarization
+[NeMo I 2023-07-03 03:58:21 collections:298] Filtered duration for loading collection is 0.000000.
+[NeMo I 2023-07-03 03:58:21 collections:301] Dataset loaded with 36 items, total duration of  0.01 hours.
+[NeMo I 2023-07-03 03:58:21 collections:303] # 36 files loaded accounting to # 1 labels
+[2/5] extract embeddings: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00,  2.83it/s]
+[NeMo I 2023-07-03 03:58:21 clustering_diarizer:389] Saved embedding files to /home/pmmcb/Code/Speech-to-Text/whisper-diarization/temp_outputs/speaker_outputs/embeddings
+[NeMo I 2023-07-03 03:58:21 clustering_diarizer:287] Subsegmentation for embedding extraction: scale2, /home/pmmcb/Code/Speech-to-Text/whisper-diarization/temp_outputs/speaker_outputs/subsegments_scale2.json
+[NeMo I 2023-07-03 03:58:21 clustering_diarizer:343] Extracting embeddings for Diarization
+[NeMo I 2023-07-03 03:58:21 collections:298] Filtered duration for loading collection is 0.000000.
+[NeMo I 2023-07-03 03:58:21 collections:301] Dataset loaded with 44 items, total duration of  0.01 hours.
+[NeMo I 2023-07-03 03:58:21 collections:303] # 44 files loaded accounting to # 1 labels
+[3/5] extract embeddings: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00,  3.82it/s]
+[NeMo I 2023-07-03 03:58:21 clustering_diarizer:389] Saved embedding files to /home/pmmcb/Code/Speech-to-Text/whisper-diarization/temp_outputs/speaker_outputs/embeddings
+[NeMo I 2023-07-03 03:58:21 clustering_diarizer:287] Subsegmentation for embedding extraction: scale3, /home/pmmcb/Code/Speech-to-Text/whisper-diarization/temp_outputs/speaker_outputs/subsegments_scale3.json
+[NeMo I 2023-07-03 03:58:21 clustering_diarizer:343] Extracting embeddings for Diarization
+[NeMo I 2023-07-03 03:58:21 collections:298] Filtered duration for loading collection is 0.000000.
+[NeMo I 2023-07-03 03:58:21 collections:301] Dataset loaded with 59 items, total duration of  0.01 hours.
+[NeMo I 2023-07-03 03:58:21 collections:303] # 59 files loaded accounting to # 1 labels
+[4/5] extract embeddings: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00,  3.34it/s]
+[NeMo I 2023-07-03 03:58:22 clustering_diarizer:389] Saved embedding files to /home/pmmcb/Code/Speech-to-Text/whisper-diarization/temp_outputs/speaker_outputs/embeddings
+[NeMo I 2023-07-03 03:58:22 clustering_diarizer:287] Subsegmentation for embedding extraction: scale4, /home/pmmcb/Code/Speech-to-Text/whisper-diarization/temp_outputs/speaker_outputs/subsegments_scale4.json
+[NeMo I 2023-07-03 03:58:22 clustering_diarizer:343] Extracting embeddings for Diarization
+[NeMo I 2023-07-03 03:58:22 collections:298] Filtered duration for loading collection is 0.000000.
+[NeMo I 2023-07-03 03:58:22 collections:301] Dataset loaded with 88 items, total duration of  0.01 hours.
+[NeMo I 2023-07-03 03:58:22 collections:303] # 88 files loaded accounting to # 1 labels
+[5/5] extract embeddings: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00<00:00,  6.58it/s]
+[NeMo I 2023-07-03 03:58:22 clustering_diarizer:389] Saved embedding files to /home/pmmcb/Code/Speech-to-Text/whisper-diarization/temp_outputs/speaker_outputs/embeddings
+clustering: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:01<00:00,  1.47s/it]
+[NeMo I 2023-07-03 03:58:23 clustering_diarizer:464] Outputs are saved in /home/pmmcb/Code/Speech-to-Text/whisper-diarization/temp_outputs directory
+[NeMo W 2023-07-03 03:58:23 der:106] Check if each ground truth RTTMs were present in the provided manifest file. Skipping calculation of Diariazation Error Rate
+[NeMo I 2023-07-03 03:58:23 msdd_models:960] Loading embedding pickle file of scale:0 at /home/pmmcb/Code/Speech-to-Text/whisper-diarization/temp_outputs/speaker_outputs/embeddings/subsegments_scale0_embeddings.pkl
+[NeMo I 2023-07-03 03:58:23 msdd_models:960] Loading embedding pickle file of scale:1 at /home/pmmcb/Code/Speech-to-Text/whisper-diarization/temp_outputs/speaker_outputs/embeddings/subsegments_scale1_embeddings.pkl
+[NeMo I 2023-07-03 03:58:23 msdd_models:960] Loading embedding pickle file of scale:2 at /home/pmmcb/Code/Speech-to-Text/whisper-diarization/temp_outputs/speaker_outputs/embeddings/subsegments_scale2_embeddings.pkl
+[NeMo I 2023-07-03 03:58:23 msdd_models:960] Loading embedding pickle file of scale:3 at /home/pmmcb/Code/Speech-to-Text/whisper-diarization/temp_outputs/speaker_outputs/embeddings/subsegments_scale3_embeddings.pkl
+[NeMo I 2023-07-03 03:58:23 msdd_models:960] Loading embedding pickle file of scale:4 at /home/pmmcb/Code/Speech-to-Text/whisper-diarization/temp_outputs/speaker_outputs/embeddings/subsegments_scale4_embeddings.pkl
+[NeMo I 2023-07-03 03:58:23 msdd_models:938] Loading cluster label file from /home/pmmcb/Code/Speech-to-Text/whisper-diarization/temp_outputs/speaker_outputs/subsegments_scale4_cluster.label
+[NeMo I 2023-07-03 03:58:23 collections:612] Filtered duration for loading collection is 0.000000.
+[NeMo I 2023-07-03 03:58:23 collections:615] Total 1 session files loaded accounting to # 1 audio clips
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00,  3.46it/s]
+[NeMo I 2023-07-03 03:58:24 msdd_models:1403]      [Threshold: 0.7000] [use_clus_as_main=False] [diar_window=50]
+[NeMo I 2023-07-03 03:58:24 speaker_utils:93] Number of files to diarize: 1
+[NeMo I 2023-07-03 03:58:24 speaker_utils:93] Number of files to diarize: 1
+[NeMo W 2023-07-03 03:58:24 der:106] Check if each ground truth RTTMs were present in the provided manifest file. Skipping calculation of Diariazation Error Rate
+[NeMo I 2023-07-03 03:58:24 speaker_utils:93] Number of files to diarize: 1
+[NeMo W 2023-07-03 03:58:24 der:106] Check if each ground truth RTTMs were present in the provided manifest file. Skipping calculation of Diariazation Error Rate
+[NeMo I 2023-07-03 03:58:24 speaker_utils:93] Number of files to diarize: 1
+[NeMo W 2023-07-03 03:58:24 der:106] Check if each ground truth RTTMs were present in the provided manifest file. Skipping calculation of Diariazation Error Rate
+[NeMo I 2023-07-03 03:58:24 msdd_models:1431]
+
+Downloading (…)lve/main/config.json: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 914/914 [00:00<00:00, 6.60MB/s]
+Downloading pytorch_model.bin: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1.11G/1.11G [00:19<00:00, 55.6MB/s]
+Downloading (…)okenizer_config.json: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 447/447 [00:00<00:00, 3.53MB/s]
+Downloading tokenizer.json: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 17.1M/17.1M [00:00<00:00, 81.1MB/s]
+Downloading (…)cial_tokens_map.json: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 239/239 [00:00<00:00, 2.12MB/s]
+[NeMo W 2023-07-03 03:58:49 nemo_logging:349] /home/pmmcb/Code/Speech-to-Text/whisper-diarization/venv/lib/python3.10/site-packages/transformers/pipelines/token_classification.py:169: UserWarning: `grouped_entities` is deprecated and will be removed in version v5.0.0, defaulted to `aggregation_strategy="none"` instead.
+      warnings.warn(

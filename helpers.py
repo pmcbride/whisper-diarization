@@ -46,6 +46,7 @@ def create_config(output_dir):
     DOMAIN_TYPE = "telephonic"  # Can be meeting or telephonic based on domain type of the audio file
     CONFIG_FILE_NAME = f"diar_infer_{DOMAIN_TYPE}.yaml"
     CONFIG_URL = f"https://raw.githubusercontent.com/NVIDIA/NeMo/main/examples/speaker_tasks/diarization/conf/inference/{CONFIG_FILE_NAME}"
+    # CONFIG_URL = f"https://raw.githubusercontent.com/NVIDIA/NeMo/main/examples/speaker_tasks/diarization/conf/inference/diar_infer_telephonic.yaml"
     MODEL_CONFIG = os.path.join(output_dir, CONFIG_FILE_NAME)
     if not os.path.exists(MODEL_CONFIG):
         MODEL_CONFIG = wget.download(CONFIG_URL, output_dir)
